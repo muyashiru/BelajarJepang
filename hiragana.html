@@ -383,15 +383,5 @@
         initQuiz();
     </script>
     <script src="darkmode.js"></script>
-    <script>
-        // Clean URL - Remove .html from URL
-        (function() {
-            let path = window.location.pathname;
-            if (path.endsWith('.html')) {
-                let newPath = path.replace('.html', '');
-                window.history.replaceState(null, '', newPath);
-            }
-        })();
-    </script>
 </body>
 </html>

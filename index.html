@@ -358,15 +358,6 @@
             (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         }
-        
-        // Clean URL - Remove .html from URL
-        (function() {
-            let path = window.location.pathname;
-            if (path.endsWith('.html')) {
-                let newPath = path.replace('.html', '');
-                window.history.replaceState(null, '', newPath);
-            }
-        })();
     </script>
     
 
