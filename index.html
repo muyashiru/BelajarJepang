@@ -5,27 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Belajar Jepang - Gratis, Langsung Mulai!</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        
+        #loading-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 126, 234, 0.7);
+            z-index: -1;
+        }
+        
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-emoji {
+            font-size: 80px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        .start-button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .start-button:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+        
+        .cherry-blossoms {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .cherry {
+            position: absolute;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="cherry-blossoms">
+            <span class="cherry" style="left: 10%; animation-duration: 6s; animation-delay: 0s;">🌸</span>
+            <span class="cherry" style="left: 30%; animation-duration: 8s; animation-delay: 1s;">🌸</span>
+            <span class="cherry" style="left: 50%; animation-duration: 7s; animation-delay: 2s;">🌸</span>
+            <span class="cherry" style="left: 70%; animation-duration: 9s; animation-delay: 0.5s;">🌸</span>
+            <span class="cherry" style="left: 90%; animation-duration: 7.5s; animation-delay: 1.5s;">🌸</span>
+        </div>
+        <div class="loading-emoji">🇯🇵</div>
+        <div class="loading-text">こんにちは Nasywa-chan! ✨</div>
+        <div class="loading-subtitle">一緒に日本語を勉強しましょう！</div>
+        <button class="start-button" onclick="startWebsite()">🌸 始めましょう (Mulai) 🌸</button>
+    </div>
+
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm">
+    <nav class="bg-white dark:bg-gray-800 shadow-sm transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <span class="text-xl font-bold text-gray-900">Nasywa Goes To Japan</span>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-900 font-medium">Beranda</a>
-                    <a href="hiragana.html" class="text-gray-600 hover:text-gray-900">Hiragana</a>
-                    <a href="kanji.html" class="text-gray-600 hover:text-gray-900">Kanji</a>
-                    <a href="referensi.html" class="text-gray-600 hover:text-gray-900">Tentang Kami</a>
+                <div class="flex items-center space-x-8">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="index.html" class="text-gray-900 dark:text-white font-medium">Beranda</a>
+                        <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Hiragana</a>
+                        <a href="kanji.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Kanji</a>
+                        <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Tentang Kami</a>
+                    </div>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" title="Toggle Dark Mode">
+                        <svg class="w-5 h-5 text-gray-800 dark:text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path class="dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            <path class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -35,27 +164,27 @@
     <section class="py-20 px-4">
         <div class="max-w-4xl mx-auto text-center">
             <div class="inline-block mb-4">
-                <span class="bg-red-50 text-red-500 px-4 py-2 rounded-full text-sm font-semibold">
+                <span class="bg-red-50 dark:bg-red-900 text-red-500 dark:text-red-300 px-4 py-2 rounded-full text-sm font-semibold">
                     ❤️ VERSI BARU
                 </span>
             </div>
-            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-2">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-2">
                 Belajar Jepang Gratis,
             </h1>
-            <h2 class="text-5xl md:text-6xl font-extrabold text-red-500 mb-6">
+            <h2 class="text-5xl md:text-6xl font-extrabold text-red-500 dark:text-red-400 mb-6">
                 Langsung Mulai!
             </h2>
-            <p class="text-xl text-gray-600 mb-2">
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-2">
                 Kuasai Hiragana dan Kanji dengan metode simpel.
             </p>
-            <p class="text-xl text-gray-600 mb-8">
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 Tanpa akun, tanpa bayar, tanpa ribet.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="pilih-jalur.html" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-200">
+                <a href="pilih-jalur.html" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-200">
                     ▶ Mulai Sekarang
                 </a>
-                <a href="referensi.html" class="bg-white hover:bg-gray-50 text-gray-700 font-bold py-4 px-8 rounded-lg border-2 border-gray-200 text-lg transition duration-200">
+                <a href="referensi.html" class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold py-4 px-8 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-lg transition duration-200">
                     Lihat Materi
                 </a>
             </div>
@@ -63,60 +192,60 @@
     </section>
 
     <!-- Learning Paths -->
-    <section class="py-16 px-4 bg-white">
+    <section class="py-16 px-4 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-4">
                 Pilih Jalur Belajar Anda
             </h2>
-            <p class="text-center text-gray-600 mb-12">
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-12">
                 Mulai dari dasar atau lanjutkan yang sudah Anda tahu.
             </p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Hiragana Dasar -->
-                <div class="bg-red-50 rounded-2xl p-8 hover:shadow-lg transition duration-200">
-                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                    <div class="w-12 h-12 bg-red-100 dark:bg-red-800 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Hiragana Dasar</h3>
-                    <p class="text-gray-600 mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Hiragana Dasar</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
                         Huruf dasar bahasa Jepang. Langkah pertama wajib sebelum semua pemula.
                     </p>
-                    <a href="hiragana.html" class="inline-flex items-center text-red-500 font-semibold hover:text-red-600">
+                    <a href="hiragana.html" class="inline-flex items-center text-red-500 dark:text-red-400 font-semibold hover:text-red-600 dark:hover:text-red-300">
                         Mulai Belajar →
                     </a>
                 </div>
 
                 <!-- Katakana -->
-                <div class="bg-blue-50 rounded-2xl p-8 hover:shadow-lg transition duration-200">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-800 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Katakana</h3>
-                    <p class="text-gray-600 mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Katakana</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
                         Digunakan untuk kata serapan asing. Lengkapi kemampuan membaca Anda.
                     </p>
-                    <a href="katakana.html" class="inline-flex items-center text-blue-500 font-semibold hover:text-blue-600">
+                    <a href="katakana.html" class="inline-flex items-center text-blue-500 dark:text-blue-400 font-semibold hover:text-blue-600 dark:hover:text-blue-300">
                         Mulai Belajar →
                     </a>
                 </div>
 
                 <!-- Kanji N5 -->
-                <div class="bg-orange-50 rounded-2xl p-8 hover:shadow-lg transition duration-200">
-                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                    <div class="w-12 h-12 bg-orange-100 dark:bg-orange-800 rounded-lg flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Kanji N5</h3>
-                    <p class="text-gray-600 mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Kanji N5</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
                         Memahami simbol dan makna. Mulai dari 100 kanji paling sering muncul.
                     </p>
-                    <a href="kanji.html" class="inline-flex items-center text-orange-500 font-semibold hover:text-orange-600">
+                    <a href="kanji.html" class="inline-flex items-center text-orange-500 dark:text-orange-400 font-semibold hover:text-orange-600 dark:hover:text-orange-300">
                         Mulai Belajar →
                     </a>
                 </div>
@@ -127,16 +256,16 @@
     <!-- No Login Section -->
     <section class="py-16 px-4">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="bg-gray-100 rounded-2xl p-8">
-                <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+                <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                     Tanpa Login, Tanpa Ribet
                 </h3>
-                <p class="text-gray-600 max-w-2xl mx-auto">
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     Kami percaya pendidikan harus mudah diakses. Anda tidak perlu mendaftar atau memberikan email untuk mulai belajar.
                 </p>
             </div>
@@ -156,31 +285,92 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-8 px-4">
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8 px-4 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-4 md:mb-0">
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <span class="text-xl font-bold text-gray-900">Nasywa Goes To Japan</span>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</span>
                 </div>
                 <div class="flex space-x-6 mb-4 md:mb-0">
-                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Beranda</a>
-                    <a href="hiragana.html" class="text-gray-600 hover:text-gray-900">Hiragana</a>
-                    <a href="katakana.html" class="text-gray-600 hover:text-gray-900">Katakana</a>
-                    <a href="kanji.html" class="text-gray-600 hover:text-gray-900">Kanji</a>
-                    <a href="referensi.html" class="text-gray-600 hover:text-gray-900">Tentang Kami</a>
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Beranda</a>
+                    <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Hiragana</a>
+                    <a href="katakana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Katakana</a>
+                    <a href="kanji.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Kanji</a>
+                    <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Tentang Kami</a>
                 </div>
             </div>
-            <div class="mt-8 text-center text-gray-500 text-sm">
+            <div class="mt-8 text-center text-gray-500 dark:text-gray-400 text-sm">
                 © 2023 Belajar Jepang. Dibuat dengan semangat belajar.
                 <div class="mt-2">
-                    <a href="#" class="hover:text-gray-700">Kebijakan Privasi</a> · 
-                    <a href="#" class="hover:text-gray-700">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-gray-700 dark:hover:text-gray-200">Kebijakan Privasi</a> · 
+                    <a href="#" class="hover:text-gray-700 dark:hover:text-gray-200">Syarat & Ketentuan</a>
                 </div>
             </div>
         </div>
     </footer>
+    
+    <script>
+        // Dark Mode Toggle Function
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+        
+        // Check for saved dark mode preference or default to light mode
+        if (localStorage.getItem('darkMode') === 'enabled' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    
+    <!-- Loading Screen Script -->
+    <script>
+        function startWebsite() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const startButton = event.target;
+            
+            // Disable button to prevent multiple clicks
+            startButton.disabled = true;
+            startButton.textContent = '読み込み中... (Loading...)';
+            
+            // Play greeting audio
+            const greetingAudio = new Audio('hallo.aac');
+            greetingAudio.play().catch(e => {
+                console.log('Audio play failed:', e);
+                // Hide loading screen even if audio fails
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                }, 500);
+            });
+            
+            // Hide loading screen after audio ends or 5 seconds
+            let audioEnded = false;
+            let timerEnded = false;
+            
+            function hideLoading() {
+                if ((audioEnded || timerEnded) && loadingScreen) {
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                    }, 500);
+                }
+            }
+            
+            // Listen for audio end
+            greetingAudio.addEventListener('ended', () => {
+                audioEnded = true;
+                hideLoading();
+            });
+            
+            // Backup timer (5 seconds)
+            setTimeout(() => {
+                timerEnded = true;
+                hideLoading();
+            }, 5000);
+        }
+    </script>
 </body>
 </html>

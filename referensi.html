@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referensi Karakter - Nasywa Goes To Japan</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="darkmode.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
@@ -12,21 +18,29 @@
         .char-card:hover { transform: translateY(-4px); }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <a href="index.html" class="text-xl font-bold text-gray-900">Nasywa Goes To Japan</a>
+                    <a href="index.html" class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</a>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Beranda</a>
-                    <a href="hiragana.html" class="text-gray-600 hover:text-gray-900">Latihan</a>
-                    <a href="referensi.html" class="text-gray-900 font-medium">Referensi</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Beranda</a>
+                    <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Latihan</a>
+                    <a href="referensi.html" class="text-gray-900 dark:text-white font-medium">Referensi</a>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <svg class="w-5 h-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -42,16 +56,16 @@
                 Jelajahi 46 Hiragana, 46 Katakana, dan 271 Kanji (N5 & N4)
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="showSection('hiragana')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                <button onclick="showSection('hiragana')" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition">
                     📝 Hiragana
                 </button>
-                <button onclick="showSection('katakana')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                <button onclick="showSection('katakana')" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition">
                     📝 Katakana
                 </button>
-                <button onclick="showSection('kanji-n5')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                <button onclick="showSection('kanji-n5')" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition">
                     📚 Kanji N5
                 </button>
-                <button onclick="showSection('kanji-n4')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                <button onclick="showSection('kanji-n4')" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition">
                     📚 Kanji N4
                 </button>
             </div>
@@ -59,38 +73,38 @@
     </section>
 
     <!-- Statistics -->
-    <section class="py-12 px-4 bg-white border-b">
+    <section class="py-12 px-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div class="text-center">
                     <div class="text-4xl font-bold text-red-500">46</div>
-                    <div class="text-gray-600 mt-2">Hiragana</div>
+                    <div class="text-gray-600 dark:text-gray-300 mt-2">Hiragana</div>
                 </div>
                 <div class="text-center">
                     <div class="text-4xl font-bold text-blue-500">46</div>
-                    <div class="text-gray-600 mt-2">Katakana</div>
+                    <div class="text-gray-600 dark:text-gray-300 mt-2">Katakana</div>
                 </div>
                 <div class="text-center">
                     <div class="text-4xl font-bold text-orange-500">103</div>
-                    <div class="text-gray-600 mt-2">Kanji N5</div>
+                    <div class="text-gray-600 dark:text-gray-300 mt-2">Kanji N5</div>
                 </div>
                 <div class="text-center">
                     <div class="text-4xl font-bold text-purple-500">168</div>
-                    <div class="text-gray-600 mt-2">Kanji N4</div>
+                    <div class="text-gray-600 dark:text-gray-300 mt-2">Kanji N4</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Hiragana Section -->
-    <section id="hiragana-section" class="py-12 px-4">
+    <section id="hiragana-section" class="py-12 px-4 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Tabel Hiragana</h2>
-                    <p class="text-gray-600 mt-2">Huruf dasar bahasa Jepang (46 karakter)</p>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Tabel Hiragana</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Huruf dasar bahasa Jepang (46 karakter)</p>
                 </div>
-                <a href="hiragana.html" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg">
+                <a href="hiragana.html" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg">
                     Mulai Latihan →
                 </a>
             </div>
@@ -101,14 +115,14 @@
     </section>
 
     <!-- Katakana Section -->
-    <section id="katakana-section" class="py-12 px-4 bg-white">
+    <section id="katakana-section" class="py-12 px-4 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Tabel Katakana</h2>
-                    <p class="text-gray-600 mt-2">Untuk kata serapan asing (46 karakter)</p>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Tabel Katakana</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Untuk kata serapan asing (46 karakter)</p>
                 </div>
-                <a href="katakana.html" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg">
+                <a href="katakana.html" class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg">
                     Mulai Latihan →
                 </a>
             </div>
@@ -119,14 +133,14 @@
     </section>
 
     <!-- Kanji N5 Section -->
-    <section id="kanji-n5-section" class="py-12 px-4">
+    <section id="kanji-n5-section" class="py-12 px-4 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Daftar Kanji N5</h2>
-                    <p class="text-gray-600 mt-2">103 kanji level pemula untuk JLPT N5</p>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Daftar Kanji N5</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">103 kanji level pemula untuk JLPT N5</p>
                 </div>
-                <a href="kanji.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg">
+                <a href="kanji.html" class="bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg">
                     Mulai Latihan →
                 </a>
             </div>
@@ -137,14 +151,14 @@
     </section>
 
     <!-- Kanji N4 Section -->
-    <section id="kanji-n4-section" class="py-12 px-4 bg-white">
+    <section id="kanji-n4-section" class="py-12 px-4 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-900">Daftar Kanji N4</h2>
-                    <p class="text-gray-600 mt-2">168 kanji level menengah untuk JLPT N4</p>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Daftar Kanji N4</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">168 kanji level menengah untuk JLPT N4</p>
                 </div>
-                <a href="kanji.html" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg">
+                <a href="kanji.html" class="bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg">
                     Mulai Latihan →
                 </a>
             </div>
@@ -155,24 +169,24 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-8 px-4">
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8 px-4 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-4 md:mb-0">
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <span class="text-xl font-bold text-gray-900">Nasywa Goes To Japan</span>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</span>
                 </div>
                 <div class="flex space-x-6 mb-4 md:mb-0">
-                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Beranda</a>
-                    <a href="hiragana.html" class="text-gray-600 hover:text-gray-900">Hiragana</a>
-                    <a href="katakana.html" class="text-gray-600 hover:text-gray-900">Katakana</a>
-                    <a href="kanji.html" class="text-gray-600 hover:text-gray-900">Kanji</a>
-                    <a href="referensi.html" class="text-gray-600 hover:text-gray-900">Referensi</a>
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Beranda</a>
+                    <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Hiragana</a>
+                    <a href="katakana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Katakana</a>
+                    <a href="kanji.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Kanji</a>
+                    <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Referensi</a>
                 </div>
             </div>
-            <div class="mt-8 text-center text-gray-500 text-sm">
+            <div class="mt-8 text-center text-gray-500 dark:text-gray-400 text-sm">
                 © 2023 Belajar Jepang. Dibuat dengan semangat belajar.
             </div>
         </div>
@@ -219,10 +233,10 @@
         // Create character card for Hiragana/Katakana
         function createCharCard(char, romaji, color) {
             const card = document.createElement('div');
-            card.className = `char-card bg-white border-2 border-${color}-200 hover:border-${color}-400 rounded-xl p-4 text-center cursor-pointer shadow-sm hover:shadow-md`;
+            card.className = `char-card bg-white dark:bg-gray-800 border-2 border-${color}-200 dark:border-${color}-600 hover:border-${color}-400 dark:hover:border-${color}-500 rounded-xl p-4 text-center cursor-pointer shadow-sm hover:shadow-md transition-colors duration-300`;
             card.innerHTML = `
-                <div class="text-4xl font-normal mb-2">${char}</div>
-                <div class="text-sm font-semibold text-gray-700">${romaji}</div>
+                <div class="text-4xl font-normal mb-2 text-gray-900 dark:text-white">${char}</div>
+                <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">${romaji}</div>
             `;
             return card;
         }
@@ -230,14 +244,14 @@
         // Create kanji card
         function createKanjiCard(item, color) {
             const card = document.createElement('div');
-            card.className = `char-card bg-white border-2 border-${color}-200 hover:border-${color}-400 rounded-xl p-4 cursor-pointer shadow-sm hover:shadow-md`;
+            card.className = `char-card bg-white dark:bg-gray-800 border-2 border-${color}-200 dark:border-${color}-600 hover:border-${color}-400 dark:hover:border-${color}-500 rounded-xl p-4 cursor-pointer shadow-sm hover:shadow-md transition-colors duration-300`;
             card.innerHTML = `
-                <div class="text-5xl font-normal mb-2 text-center">${item.char}</div>
+                <div class="text-5xl font-normal mb-2 text-center text-gray-900 dark:text-white">${item.char}</div>
                 <div class="text-sm">
-                    <div class="font-semibold text-gray-900 mb-1">${item.arti}</div>
-                    <div class="text-gray-600 text-xs mb-1">On: ${item.onyomi}</div>
-                    <div class="text-gray-600 text-xs mb-2">Kun: ${item.kunyomi || '-'}</div>
-                    <div class="text-gray-500 text-xs italic">${item.contoh}</div>
+                    <div class="font-semibold text-gray-900 dark:text-white mb-1">${item.arti}</div>
+                    <div class="text-gray-600 dark:text-gray-400 text-xs mb-1">On: ${item.onyomi}</div>
+                    <div class="text-gray-600 dark:text-gray-400 text-xs mb-2">Kun: ${item.kunyomi || '-'}</div>
+                    <div class="text-gray-500 dark:text-gray-500 text-xs italic">${item.contoh}</div>
                 </div>
             `;
             return card;
@@ -267,5 +281,6 @@
             populateKanjiN4();
         });
     </script>
+    <script src="darkmode.js"></script>
 </body>
 </html>
