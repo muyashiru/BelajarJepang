@@ -283,3 +283,89 @@ const kanjiN4Data = [
     { char: '字', onyomi: 'ジ', kunyomi: 'あざ', arti: 'huruf, karakter', level: 'N4', contoh: '文字 (moji) = huruf' },
     { char: '安', onyomi: 'アン', kunyomi: 'やす.い', arti: 'murah, aman', level: 'N4', contoh: '安い (yasui) = murah' }
 ];
+
+// KOSAKATA - BULAN & TANGGAL
+const bulanData = [
+    { char: '1月', hiragana: 'いちがつ', romaji: 'ichigatsu', arti: 'Januari' },
+    { char: '2月', hiragana: 'にがつ', romaji: 'nigatsu', arti: 'Februari' },
+    { char: '3月', hiragana: 'さんがつ', romaji: 'sangatsu', arti: 'Maret' },
+    { char: '4月', hiragana: 'しがつ', romaji: 'shigatsu', arti: 'April' },
+    { char: '5月', hiragana: 'ごがつ', romaji: 'gogatsu', arti: 'Mei' },
+    { char: '6月', hiragana: 'ろくがつ', romaji: 'rokugatsu', arti: 'Juni' },
+    { char: '7月', hiragana: 'しちがつ', romaji: 'shichigatsu', arti: 'Juli' },
+    { char: '8月', hiragana: 'はちがつ', romaji: 'hachigatsu', arti: 'Agustus' },
+    { char: '9月', hiragana: 'くがつ', romaji: 'kugatsu', arti: 'September' },
+    { char: '10月', hiragana: 'じゅうがつ', romaji: 'juugatsu', arti: 'Oktober' },
+    { char: '11月', hiragana: 'じゅういちがつ', romaji: 'juuichigatsu', arti: 'November' },
+    { char: '12月', hiragana: 'じゅうにがつ', romaji: 'juunigatsu', arti: 'Desember' }
+];
+
+const tanggalData = [
+    { char: '1日', hiragana: 'ついたち', romaji: 'tsuitachi', arti: 'Tanggal 1' },
+    { char: '2日', hiragana: 'ふつか', romaji: 'futsuka', arti: 'Tanggal 2' },
+    { char: '3日', hiragana: 'みっか', romaji: 'mikka', arti: 'Tanggal 3' },
+    { char: '4日', hiragana: 'よっか', romaji: 'yokka', arti: 'Tanggal 4' },
+    { char: '5日', hiragana: 'いつか', romaji: 'itsuka', arti: 'Tanggal 5' },
+    { char: '6日', hiragana: 'むいか', romaji: 'muika', arti: 'Tanggal 6' },
+    { char: '7日', hiragana: 'なのか', romaji: 'nanoka', arti: 'Tanggal 7' },
+    { char: '8日', hiragana: 'ようか', romaji: 'youka', arti: 'Tanggal 8' },
+    { char: '9日', hiragana: 'ここのか', romaji: 'kokonoka', arti: 'Tanggal 9' },
+    { char: '10日', hiragana: 'とおか', romaji: 'tooka', arti: 'Tanggal 10' },
+    { char: '11日', hiragana: 'じゅういちにち', romaji: 'juuichinichi', arti: 'Tanggal 11' },
+    { char: '12日', hiragana: 'じゅうににち', romaji: 'juuninichi', arti: 'Tanggal 12' },
+    { char: '13日', hiragana: 'じゅうさんにち', romaji: 'juusannichi', arti: 'Tanggal 13' },
+    { char: '14日', hiragana: 'じゅうよっか', romaji: 'juuyokka', arti: 'Tanggal 14' },
+    { char: '15日', hiragana: 'じゅうごにち', romaji: 'juugonichi', arti: 'Tanggal 15' },
+    { char: '16日', hiragana: 'じゅうろくにち', romaji: 'juurokunichi', arti: 'Tanggal 16' },
+    { char: '17日', hiragana: 'じゅうなのか', romaji: 'juunanoka', arti: 'Tanggal 17' },
+    { char: '17日', hiragana: 'じゅうしちにち', romaji: 'juushichinichi', arti: 'Tanggal 17' },
+    { char: '18日', hiragana: 'じゅうはちにち', romaji: 'juuhachinichi', arti: 'Tanggal 18' },
+    { char: '19日', hiragana: 'じゅうくにち', romaji: 'juukunichi', arti: 'Tanggal 19' },
+    { char: '20日', hiragana: 'はつか', romaji: 'hatsuka', arti: 'Tanggal 20' },
+    { char: '21日', hiragana: 'にじゅういちにち', romaji: 'nijuuichinichi', arti: 'Tanggal 21' },
+    { char: '22日', hiragana: 'にじゅうににち', romaji: 'nijuuninichi', arti: 'Tanggal 22' },
+    { char: '23日', hiragana: 'にじゅうさんにち', romaji: 'nijuusannichi', arti: 'Tanggal 23' },
+    { char: '24日', hiragana: 'にじゅうよっか', romaji: 'nijuuyokka', arti: 'Tanggal 24' },
+    { char: '25日', hiragana: 'にじゅうごにち', romaji: 'nijuugonichi', arti: 'Tanggal 25' },
+    { char: '26日', hiragana: 'にじゅうろくにち', romaji: 'nijuurokunichi', arti: 'Tanggal 26' },
+    { char: '27日', hiragana: 'にじゅうしちにち', romaji: 'nijuushichinichi', arti: 'Tanggal 27' },
+    { char: '27日', hiragana: 'にじゅうなのか', romaji: 'nijuunanoka', arti: 'Tanggal 27' },
+    { char: '28日', hiragana: 'にじゅうはちにち', romaji: 'nijuuhachinichi', arti: 'Tanggal 28' },
+    { char: '29日', hiragana: 'にじゅうくにち', romaji: 'nijuukunichi', arti: 'Tanggal 29' },
+    { char: '30日', hiragana: 'さんじゅうにち', romaji: 'sanjuunichi', arti: 'Tanggal 30' },
+    { char: '31日', hiragana: 'さんじゅういちにち', romaji: 'sanjuuichinichi', arti: 'Tanggal 31' }
+];
+
+const menitData = [
+    { char: '1分', hiragana: 'いっぷん', romaji: 'ippun', arti: '1 menit' },
+    { char: '2分', hiragana: 'にふん', romaji: 'nifun', arti: '2 menit' },
+    { char: '3分', hiragana: 'さんぷん', romaji: 'sanpun', arti: '3 menit' },
+    { char: '4分', hiragana: 'よんぷん', romaji: 'yonpun', arti: '4 menit' },
+    { char: '5分', hiragana: 'ごふん', romaji: 'gofun', arti: '5 menit' },
+    { char: '6分', hiragana: 'ろっぷん', romaji: 'roppun', arti: '6 menit' },
+    { char: '7分', hiragana: 'ななふん', romaji: 'nanafun', arti: '7 menit' },
+    { char: '8分', hiragana: 'はっぷん', romaji: 'happun', arti: '8 menit' },
+    { char: '9分', hiragana: 'きゅうふん', romaji: 'kyuufun', arti: '9 menit' },
+    { char: '10分', hiragana: 'じゅっぷん', romaji: 'juppun', arti: '10 menit' }
+];
+
+const angkaData = [
+    { char: '100', hiragana: 'ひゃく', romaji: 'hyaku', arti: '100' },
+    { char: '200', hiragana: 'にひゃく', romaji: 'nihyaku', arti: '200' },
+    { char: '300', hiragana: 'さんびゃく', romaji: 'sanbyaku', arti: '300' },
+    { char: '400', hiragana: 'よんひゃく', romaji: 'yonhyaku', arti: '400' },
+    { char: '500', hiragana: 'ごひゃく', romaji: 'gohyaku', arti: '500' },
+    { char: '600', hiragana: 'ろっぴゃく', romaji: 'roppyaku', arti: '600' },
+    { char: '700', hiragana: 'ななひゃく', romaji: 'nanahyaku', arti: '700' },
+    { char: '800', hiragana: 'はっぴゃく', romaji: 'happyaku', arti: '800' },
+    { char: '900', hiragana: 'きゅうひゃく', romaji: 'kyuuhyaku', arti: '900' },
+    { char: '1000', hiragana: 'せん', romaji: 'sen', arti: '1000' },
+    { char: '2000', hiragana: 'にせん', romaji: 'nisen', arti: '2000' },
+    { char: '3000', hiragana: 'さんぜん', romaji: 'sanzen', arti: '3000' },
+    { char: '4000', hiragana: 'よんせん', romaji: 'yonsen', arti: '4000' },
+    { char: '5000', hiragana: 'ごせん', romaji: 'gosen', arti: '5000' },
+    { char: '6000', hiragana: 'ろくせん', romaji: 'rokusen', arti: '6000' },
+    { char: '7000', hiragana: 'ななせん', romaji: 'nanasen', arti: '7000' },
+    { char: '8000', hiragana: 'はっせん', romaji: 'hassen', arti: '8000' },
+    { char: '9000', hiragana: 'きゅうせん', romaji: 'kyuusen', arti: '9000' }
+];
