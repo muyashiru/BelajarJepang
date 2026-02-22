@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referensi Karakter - Nasywa Goes To Japan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .char-card { transition: all 0.2s; }
+        .char-card:hover { transform: translateY(-4px); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">B</span>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold text-gray-900">Nasywa Goes To Japan</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Beranda</a>
+                    <a href="hiragana.html" class="text-gray-600 hover:text-gray-900">Latihan</a>
+                    <a href="referensi.html" class="text-gray-900 font-medium">Referensi</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+                Referensi Lengkap Karakter Jepang
+            </h1>
+            <p class="text-xl text-blue-100 mb-8">
+                Jelajahi 46 Hiragana, 46 Katakana, dan 271 Kanji (N5 & N4)
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="showSection('hiragana')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                    📝 Hiragana
+                </button>
+                <button onclick="showSection('katakana')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                    📝 Katakana
+                </button>
+                <button onclick="showSection('kanji-n5')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                    📚 Kanji N5
+                </button>
+                <button onclick="showSection('kanji-n4')" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition">
+                    📚 Kanji N4
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="py-12 px-4 bg-white border-b">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-red-500">46</div>
+                    <div class="text-gray-600 mt-2">Hiragana</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-500">46</div>
+                    <div class="text-gray-600 mt-2">Katakana</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-orange-500">103</div>
+                    <div class="text-gray-600 mt-2">Kanji N5</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-purple-500">168</div>
+                    <div class="text-gray-600 mt-2">Kanji N4</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hiragana Section -->
+    <section id="hiragana-section" class="py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">Tabel Hiragana</h2>
+                    <p class="text-gray-600 mt-2">Huruf dasar bahasa Jepang (46 karakter)</p>
+                </div>
+                <a href="hiragana.html" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg">
+                    Mulai Latihan →
+                </a>
+            </div>
+            <div id="hiragana-grid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-4">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Katakana Section -->
+    <section id="katakana-section" class="py-12 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">Tabel Katakana</h2>
+                    <p class="text-gray-600 mt-2">Untuk kata serapan asing (46 karakter)</p>
+                </div>
+                <a href="katakana.html" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg">
+                    Mulai Latihan →
+                </a>
+            </div>
+            <div id="katakana-grid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-4">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Kanji N5 Section -->
+    <section id="kanji-n5-section" class="py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">Daftar Kanji N5</h2>
+                    <p class="text-gray-600 mt-2">103 kanji level pemula untuk JLPT N5</p>
+                </div>
+                <a href="kanji.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg">
+                    Mulai Latihan →
+                </a>
+            </div>
+            <div id="kanji-n5-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Kanji N4 Section -->
+    <section id="kanji-n4-section" class="py-12 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">Daftar Kanji N4</h2>
+                    <p class="text-gray-600 mt-2">168 kanji level menengah untuk JLPT N4</p>
+                </div>
+                <a href="kanji.html" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg">
+                    Mulai Latihan →
+                </a>
+            </div>
+            <div id="kanji-n4-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-8 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">B</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">Nasywa Goes To Japan</span>
+                </div>
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Beranda</a>
+                    <a href="hiragana.html" class="text-gray-600 hover:text-gray-900">Hiragana</a>
+                    <a href="katakana.html" class="text-gray-600 hover:text-gray-900">Katakana</a>
+                    <a href="kanji.html" class="text-gray-600 hover:text-gray-900">Kanji</a>
+                    <a href="referensi.html" class="text-gray-600 hover:text-gray-900">Referensi</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-500 text-sm">
+                © 2023 Belajar Jepang. Dibuat dengan semangat belajar.
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        // Populate Hiragana grid
+        function populateHiragana() {
+            const grid = document.getElementById('hiragana-grid');
+            hiraganaData.forEach(item => {
+                const card = createCharCard(item.char, item.romaji, 'red');
+                grid.appendChild(card);
+            });
+        }
+
+        // Populate Katakana grid
+        function populateKatakana() {
+            const grid = document.getElementById('katakana-grid');
+            katakanaData.forEach(item => {
+                const card = createCharCard(item.char, item.romaji, 'blue');
+                grid.appendChild(card);
+            });
+        }
+
+        // Populate Kanji N5 grid
+        function populateKanjiN5() {
+            const grid = document.getElementById('kanji-n5-grid');
+            kanjiN5Data.forEach(item => {
+                const card = createKanjiCard(item, 'orange');
+                grid.appendChild(card);
+            });
+        }
+
+        // Populate Kanji N4 grid
+        function populateKanjiN4() {
+            const grid = document.getElementById('kanji-n4-grid');
+            kanjiN4Data.forEach(item => {
+                const card = createKanjiCard(item, 'purple');
+                grid.appendChild(card);
+            });
+        }
+
+        // Create character card for Hiragana/Katakana
+        function createCharCard(char, romaji, color) {
+            const card = document.createElement('div');
+            card.className = `char-card bg-white border-2 border-${color}-200 hover:border-${color}-400 rounded-xl p-4 text-center cursor-pointer shadow-sm hover:shadow-md`;
+            card.innerHTML = `
+                <div class="text-4xl font-normal mb-2">${char}</div>
+                <div class="text-sm font-semibold text-gray-700">${romaji}</div>
+            `;
+            return card;
+        }
+
+        // Create kanji card
+        function createKanjiCard(item, color) {
+            const card = document.createElement('div');
+            card.className = `char-card bg-white border-2 border-${color}-200 hover:border-${color}-400 rounded-xl p-4 cursor-pointer shadow-sm hover:shadow-md`;
+            card.innerHTML = `
+                <div class="text-5xl font-normal mb-2 text-center">${item.char}</div>
+                <div class="text-sm">
+                    <div class="font-semibold text-gray-900 mb-1">${item.arti}</div>
+                    <div class="text-gray-600 text-xs mb-1">On: ${item.onyomi}</div>
+                    <div class="text-gray-600 text-xs mb-2">Kun: ${item.kunyomi || '-'}</div>
+                    <div class="text-gray-500 text-xs italic">${item.contoh}</div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Show specific section
+        function showSection(section) {
+            const sections = {
+                'hiragana': 'hiragana-section',
+                'katakana': 'katakana-section',
+                'kanji-n5': 'kanji-n5-section',
+                'kanji-n4': 'kanji-n4-section'
+            };
+
+            // Scroll to section
+            document.getElementById(sections[section]).scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            populateHiragana();
+            populateKatakana();
+            populateKanjiN5();
+            populateKanjiN4();
+        });
+    </script>
+</body>
+</html>
