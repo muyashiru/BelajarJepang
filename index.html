@@ -329,6 +329,17 @@
     
     <!-- Loading Screen Script -->
     <script>
+        // Check if user has visited before
+        window.addEventListener('DOMContentLoaded', () => {
+            const hasVisited = localStorage.getItem('hasVisitedBefore');
+            const loadingScreen = document.getElementById('loading-screen');
+            
+            if (hasVisited) {
+                // User has visited before, hide loading screen immediately
+                loadingScreen.classList.add('hidden');
+            }
+        });
+
         function startWebsite() {
             const loadingScreen = document.getElementById('loading-screen');
             const startButton = event.target;
@@ -344,6 +355,8 @@
                 // Hide loading screen even if audio fails
                 setTimeout(() => {
                     loadingScreen.classList.add('hidden');
+                    // Mark as visited
+                    localStorage.setItem('hasVisitedBefore', 'true');
                 }, 500);
             });
             
@@ -355,6 +368,8 @@
                 if ((audioEnded || timerEnded) && loadingScreen) {
                     setTimeout(() => {
                         loadingScreen.classList.add('hidden');
+                        // Mark as visited
+                        localStorage.setItem('hasVisitedBefore', 'true');
                     }, 500);
                 }
             }
