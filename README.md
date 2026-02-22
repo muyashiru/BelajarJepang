@@ -48,7 +48,7 @@ Website interaktif untuk belajar Hiragana, Katakana, dan Kanji secara gratis tan
 ## 📁 Struktur File
 
 ```
-Nasywa Goes To Japan/
+BelajarJejepangan/
 ├── index.html          # Landing page utama
 ├── pilih-jalur.html    # Halaman pilih misi
 ├── hiragana.html       # Quiz Hiragana
@@ -149,4 +149,4 @@ Proyek ini dibuat untuk membantu pembelajaran bahasa Jepang. Silakan modifikasi 
 
 **Selamat Belajar! がんばって! (Ganbatte!)**
 
-© 2023 Belajar Jepang - Dibuat dengan ❤️
+© 2026 Belajar Jepang - Dibuat dengan ❤️

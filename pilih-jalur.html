@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pilih Misi - Nasywa Goes To Japan</title>
+    <title>Pilih Misi - BelajarJejepangan</title>
+    <!-- Dark Mode Script (must be before body renders to prevent flash) -->
+    <script>
+        (function() {
+            if (localStorage.getItem('darkMode') === 'enabled' || 
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,26 +31,92 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
+                    <!-- Hamburger Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <a href="index.html" class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</a>
+                    <a href="index.html" class="text-xl font-bold text-gray-900 dark:text-white">BelajarJejepangan</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-900 dark:text-white font-medium">Beranda</a>
-                    <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Referensi</a>
-                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                        <svg class="w-5 h-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                        </svg>
-                        <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                <div class="flex items-center space-x-4 md:space-x-8">
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-900 dark:text-white font-medium">Beranda</a>
+                        <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Referensi</a>
+                    </div>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" title="Toggle Dark Mode">
+                        <svg class="w-5 h-5 text-gray-800 dark:text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path class="dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            <path class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Sidebar -->
+    <div id="mobileMenu" class="fixed inset-0 z-50 hidden">
+        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">B</span>
+                        </div>
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">BelajarJejepangan</span>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="flex-1 overflow-y-auto p-4">
+                    <a href="index.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-900 dark:text-white bg-red-50 dark:bg-red-900/20 font-medium mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="hiragana.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Hiragana</span>
+                    </a>
+                    <a href="katakana.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Katakana</span>
+                    </a>
+                    <a href="kanji.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <span>Kanji</span>
+                    </a>
+                    <a href="kosakata.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Kosakata</span>
+                    </a>
+                    <a href="referensi.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                        </svg>
+                        <span>Referensi</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="py-12 px-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
@@ -73,19 +148,19 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <!-- Kartu Hiragana -->
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-200">
-                    <div class="bg-gradient-to-br from-red-400 to-pink-500 p-8 text-white">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-white bg-opacity-30 text-xs font-bold px-3 py-1 rounded-full">PEMULA</span>
-                            <span class="text-5xl">👶</span>
+                    <div class="bg-gradient-to-br from-red-400 to-pink-500 p-6 sm:p-8 text-white">
+                        <div class="flex items-center justify-between mb-3 sm:mb-4">
+                            <span class="bg-white bg-opacity-30 text-xs font-bold px-2 sm:px-3 py-1 rounded-full">PEMULA</span>
+                            <span class="text-4xl sm:text-5xl">👶</span>
                         </div>
-                        <h3 class="text-3xl font-bold mb-2">Kartu Hiragana</h3>
-                        <p class="text-red-100">
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-2">Kartu Hiragana</h3>
+                        <p class="text-red-100 text-sm sm:text-base">
                             Hafalkan 46 huruf dasar dengan cepat melalui flashcard interaktif.
                         </p>
                     </div>
-                    <div class="p-6">
+                    <div class="p-5 sm:p-6">
                         <div class="mb-4">
-                            <div class="flex justify-between text-sm text-gray-600 dark:text-gray-300 mb-2">
+                            <div class="flex justify-between text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2">
                                 <span>Progress</span>
                                 <span>12 / 46 Karakter</span>
                             </div>
@@ -93,7 +168,7 @@
                                 <div class="bg-red-500 h-2 rounded-full" style="width: 26%"></div>
                             </div>
                         </div>
-                        <a href="hiragana.html" class="block w-full bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 rounded-xl text-center transition duration-200">
+                        <a href="hiragana.html" class="block w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-center transition duration-200 text-sm sm:text-base">
                             Mulai Belajar ▶
                         </a>
                     </div>
@@ -131,76 +206,76 @@
     </section>
 
     <!-- Mission Modes -->
-    <section class="py-12 px-4 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <section class="py-8 sm:py-12 px-4 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 text-center">
                 Misi Sampingan
             </h2>
-            <p class="text-center text-gray-600 dark:text-gray-300 mb-8">
+            <p class="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 px-4">
                 Variasi latihan untuk pengalaman belajar yang lebih seru!
             </p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <!-- Speed Run -->
-                <button onclick="alert('Fitur Speed Run akan segera hadir!')" class="bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 rounded-2xl p-8 text-center transition duration-200 border-2 border-blue-200 dark:border-blue-800">
-                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button onclick="alert('Fitur Speed Run akan segera hadir!')" class="bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center transition duration-200 border-2 border-blue-200 dark:border-blue-800">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Speed Run</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Speed Run</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                         Jawab sebanyak mungkin dalam waktu terbatas
                     </p>
-                    <div class="mt-4 text-xs text-blue-600 dark:text-blue-400 font-semibold">
+                    <div class="mt-3 sm:mt-4 text-xs text-blue-600 dark:text-blue-400 font-semibold">
                         🏆 High Score: 45
                     </div>
                 </button>
 
                 <!-- Latihan Tulis -->
-                <button onclick="alert('Fitur Latihan Tulis akan segera hadir!')" class="bg-pink-50 dark:bg-pink-900/30 hover:bg-pink-100 dark:hover:bg-pink-900/50 rounded-2xl p-8 text-center transition duration-200 border-2 border-pink-200 dark:border-pink-800">
-                    <div class="w-16 h-16 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button onclick="alert('Fitur Latihan Tulis akan segera hadir!')" class="bg-pink-50 dark:bg-pink-900/30 hover:bg-pink-100 dark:hover:bg-pink-900/50 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center transition duration-200 border-2 border-pink-200 dark:border-pink-800">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Latihan Tulis</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Latihan Tulis</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                         Gerak latihan kerja PDF printable untuk latihan tulisan tangan
                     </p>
-                    <div class="mt-4 text-xs text-pink-600 dark:text-pink-400 font-semibold">
+                    <div class="mt-3 sm:mt-4 text-xs text-pink-600 dark:text-pink-400 font-semibold">
                         📝 Unduh PDF
                     </div>
                 </button>
 
                 <!-- Listening -->
-                <button onclick="alert('Fitur Listening akan segera hadir!')" class="bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-2xl p-8 text-center transition duration-200 border-2 border-purple-200 dark:border-purple-800">
-                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button onclick="alert('Fitur Listening akan segera hadir!')" class="bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center transition duration-200 border-2 border-purple-200 dark:border-purple-800">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Listening</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Listening</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                         Dengarkan audio dan pilih karakter yang benar
                     </p>
-                    <div class="mt-4 text-xs text-purple-600 dark:text-purple-400 font-semibold">
+                    <div class="mt-3 sm:mt-4 text-xs text-purple-600 dark:text-purple-400 font-semibold">
                         🎧 Segera Hadir
                     </div>
                 </button>
 
                 <!-- Speaking -->
-                <button onclick="alert('Fitur Speaking akan segera hadir!')" class="bg-green-50 dark:bg-green-900/30 hover:bg-green-100 dark:hover:bg-green-900/50 rounded-2xl p-8 text-center transition duration-200 border-2 border-green-200 dark:border-green-800">
-                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button onclick="alert('Fitur Speaking akan segera hadir!')" class="bg-green-50 dark:bg-green-900/30 hover:bg-green-100 dark:hover:bg-green-900/50 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center transition duration-200 border-2 border-green-200 dark:border-green-800">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Speaking</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Speaking</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                         Latih pengucapan dengan voice recognition
                     </p>
-                    <div class="mt-4 text-xs text-green-600 dark:text-green-400 font-semibold">
+                    <div class="mt-3 sm:mt-4 text-xs text-green-600 dark:text-green-400 font-semibold">
                         🎤 Segera Hadir
                     </div>
                 </button>
@@ -209,18 +284,18 @@
     </section>
 
     <!-- Fun Fact -->
-    <section class="py-16 px-4 transition-colors duration-300">
+    <section class="py-8 sm:py-12 md:py-16 px-4 transition-colors duration-300">
         <div class="max-w-4xl mx-auto">
-            <div class="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center">
-                <div class="mb-4">
-                    <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm font-bold">
+            <div class="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white text-center">
+                <div class="mb-3 sm:mb-4">
+                    <span class="inline-block bg-white bg-opacity-20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold">
                         💡 FAKTA JEPANG HARI INI
                     </span>
                 </div>
-                <h3 class="text-2xl md:text-3xl font-bold mb-4">
+                <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 px-2">
                     Tahukah kamu? Ada lebih dari 50.000 karakter Kanji, tapi kamu hanya perlu sekitar 2.000 untuk membaca koran!
                 </h3>
-                <p class="text-indigo-200 text-lg">
+                <p class="text-indigo-200 text-base sm:text-lg px-2">
                     Di website ini, kami fokuskan pada 271 kanji paling penting untuk pemula (N5 & N4)
                 </p>
                 <button onclick="window.location='kanji.html'" class="mt-6 bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-gray-700 text-indigo-600 dark:text-indigo-400 font-bold py-3 px-8 rounded-xl transition duration-200">
@@ -262,21 +337,38 @@
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <span class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</span>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">BelajarJejepangan</span>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Beranda</a>
-                    <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Hiragana</a>
-                    <a href="katakana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Katakana</a>
-                    <a href="kanji.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Kanji</a>
-                    <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Referensi</a>
+                <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6 mb-4 md:mb-0 text-sm sm:text-base">
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Beranda</a>
+                    <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Hiragana</a>
+                    <a href="katakana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Katakana</a>
+                    <a href="kanji.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Kanji</a>
+                    <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Referensi</a>
                 </div>
             </div>
-            <div class="mt-8 text-center text-gray-500 dark:text-gray-400 text-sm">
-                © 2023 Belajar Jepang. Dibuat dengan semangat belajar.
+            <div class="mt-6 sm:mt-8 text-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
+                © 2026 Belajar Jepang. Dibuat dengan semangat belajar.
             </div>
         </div>
     </footer>
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+    </script>
     <script src="darkmode.js"></script>
+    <script>
+        // Clean URL - Remove .html from URL
+        (function() {
+            let path = window.location.pathname;
+            if (path.endsWith('.html')) {
+                let newPath = path.replace('.html', '');
+                window.history.replaceState(null, '', newPath);
+            }
+        })();
+    </script>
 </body>
 </html>

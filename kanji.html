@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan Kanji - Nasywa Goes To Japan</title>
+    <title>Latihan Kanji - BelajarJejepangan</title>
+    <!-- Dark Mode Script (must be before body renders to prevent flash) -->
+    <script>
+        (function() {
+            if (localStorage.getItem('darkMode') === 'enabled' || 
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,13 +22,33 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
-        .japanese-char { font-size: 52px; font-weight: normal; }
+        .japanese-char { font-size: 70px; font-weight: normal; }
+        @media (min-width: 640px) {
+            .japanese-char { font-size: 90px; }
+        }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
-        .shake { animation: shake 0.3s; }
+        .shake { animation: shake 0.5s; }
+        .option-btn {
+            position: relative;
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (min-width: 640px) {
+            .option-btn { min-height: 60px; }
+        }
+        .option-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
@@ -28,43 +57,109 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-14">
                 <div class="flex items-center space-x-2">
+                    <!-- Hamburger Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <a href="index.html" class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</a>
+                    <a href="index.html" class="text-xl font-bold text-gray-900 dark:text-white">BelajarJejepangan</a>
                 </div>
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2 sm:space-x-4">
                     <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" title="Toggle Dark Mode">
                         <svg class="w-5 h-5 text-gray-800 dark:text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path class="dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                             <path class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                         </svg>
                     </button>
-                    <button onclick="window.location='index.html'" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <button onclick="window.location='index.html'" class="hidden sm:flex text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                     ✕ Keluar
                 </button>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu Sidebar -->
+    <div id="mobileMenu" class="fixed inset-0 z-50 hidden">
+        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">B</span>
+                        </div>
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">BelajarJejepangan</span>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="flex-1 overflow-y-auto p-4">
+                    <a href="index.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="hiragana.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Hiragana</span>
+                    </a>
+                    <a href="katakana.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Katakana</span>
+                    </a>
+                    <a href="kanji.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-900 dark:text-white bg-red-50 dark:bg-red-900/20 font-medium mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <span>Kanji</span>
+                    </a>
+                    <a href="kosakata.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Kosakata</span>
+                    </a>
+                    <a href="referensi.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                        </svg>
+                        <span>Referensi</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
     <!-- Level Selection (shown initially) -->
-    <div id="level-selection" class="max-w-4xl mx-auto px-4 py-12">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Pilih Level Kanji</h1>
-            <p class="text-xl text-gray-600 dark:text-gray-300">Mulai dari level yang sesuai dengan kemampuanmu</p>
+    <div id="level-selection" class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+        <div class="text-center mb-8 sm:mb-12">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Pilih Level Kanji</h1>
+            <p class="text-base sm:text-xl text-gray-600 dark:text-gray-300 px-4">Mulai dari level yang sesuai dengan kemampuanmu</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <!-- N5 Level -->
-            <button onclick="startQuiz('N5')" class="bg-gradient-to-br from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white rounded-2xl p-8 text-left transition duration-200 shadow-lg">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-sm font-bold bg-white bg-opacity-30 px-3 py-1 rounded-full">PEMULA</span>
-                    <span class="text-4xl">🌟</span>
+            <button onclick="startQuiz('N5')" class="bg-gradient-to-br from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white rounded-2xl p-6 sm:p-8 text-left transition duration-200 shadow-lg">
+                <div class="flex items-center justify-between mb-3 sm:mb-4">
+                    <span class="text-xs sm:text-sm font-bold bg-white bg-opacity-30 px-2 sm:px-3 py-1 rounded-full">PEMULA</span>
+                    <span class="text-3xl sm:text-4xl">🌟</span>
                 </div>
-                <h3 class="text-3xl font-bold mb-2">Kanji N5</h3>
-                <p class="text-orange-100 mb-4">103 kanji dasar untuk pemula</p>
-                <div class="flex items-center space-x-4 text-sm">
-                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">Level JLPT N5</span>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-2">Kanji N5</h3>
+                <p class="text-orange-100 mb-3 sm:mb-4 text-sm sm:text-base">103 kanji dasar untuk pemula</p>
+                <div class="flex items-center space-x-4 text-xs sm:text-sm">
+                    <span class="bg-white bg-opacity-20 px-2 sm:px-3 py-1 rounded-full">Level JLPT N5</span>
                 </div>
             </button>
 
@@ -101,49 +196,42 @@
         <div class="max-w-3xl mx-auto px-4 py-2">
             <div class="flex items-center justify-between mb-1">
                 <span class="text-xs font-semibold text-gray-600 dark:text-gray-300">Soal <span id="current-question">1</span>/<span id="total-questions">15</span></span>
-                <span class="text-xs font-semibold" id="progress-percent">7%</span>
+                <span class="text-xs font-semibold text-gray-600 dark:text-gray-300" id="progress-percent">7%</span>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-1.5">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
                 <div id="progress-bar" class="bg-orange-500 h-1.5 rounded-full transition-all duration-300" style="width: 7%"></div>
             </div>
         </div>
     </div>
 
     <!-- Quiz Container (hidden initially) -->
-    <div id="quiz-container" class="hidden max-w-3xl mx-auto px-4 py-1">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-3 transition-colors duration-300">
+    <div id="quiz-container" class="hidden max-w-2xl mx-auto px-3 sm:px-4 py-2 sm:py-3">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-5 transition-colors duration-300">
             <!-- Character Display -->
-            <div class="text-center mb-3">
-                <div class="bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-900/30 dark:to-yellow-900/30 rounded-2xl p-4 mb-2">
-                    <div class="japanese-char dark:text-white mb-2" id="question-char">日</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400" id="question-hint">
+            <div class="text-center mb-4 sm:mb-5">
+                <div class="mb-3 sm:mb-4">
+                    <div class="japanese-char dark:text-white text-gray-900 mb-2" id="question-char">日</div>
+                    <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-400" id="question-hint">
                         <!-- Hint will be shown here -->
                     </div>
                 </div>
-                <p class="text-sm text-gray-700 dark:text-gray-200 font-semibold" id="question-text">Pilih arti yang benar</p>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 font-medium" id="question-text">Pilih arti yang benar</p>
             </div>
 
             <!-- Answer Options -->
-            <div id="options-container" class="space-y-1.5">
+            <div id="options-container" class="grid grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <!-- Options will be generated by JavaScript -->
             </div>
 
             <!-- Next Button (hidden initially) -->
-            <div id="next-container" class="mt-3 hidden">
-                <button onclick="nextQuestion()" class="w-full bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-xl text-sm transition duration-200 flex items-center justify-center">
+            <div id="next-container" class="text-center hidden">
+                <button onclick="nextQuestion()" class="bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 text-white font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition duration-200 inline-flex items-center text-sm sm:text-base">
                     Lanjut
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                     </svg>
                 </button>
             </div>
-        </div>
-
-        <!-- Back Button -->
-        <div class="text-center mt-2">
-            <button onclick="backToLevelSelection()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-xs">
-                ← Kembali Pilih Level
-            </button>
         </div>
     </div>
 
@@ -307,8 +395,8 @@
             // Create option buttons
             allOptions.forEach(option => {
                 const button = document.createElement('button');
-                button.className = 'w-full bg-white dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/30 rounded-xl py-2 px-4 text-left transition duration-200 option-btn';
-                button.innerHTML = `<span class="text-sm font-semibold text-gray-900 dark:text-white">${option}</span>`;
+                button.className = 'option-btn bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 rounded-xl transition duration-200 text-lg font-semibold text-gray-900 dark:text-white';
+                button.textContent = option;
                 button.onclick = () => checkAnswer(option, correctAnswer, button);
                 optionsContainer.appendChild(button);
             });
@@ -320,18 +408,27 @@
             allButtons.forEach(btn => btn.disabled = true);
 
             if (selected === correct) {
-                button.classList.remove('border-gray-200', 'dark:border-gray-600', 'hover:border-orange-300', 'dark:hover:border-orange-500', 'hover:bg-orange-50', 'dark:hover:bg-orange-900/30');
+                button.classList.remove('border-gray-300', 'dark:border-gray-600', 'hover:border-gray-400', 'dark:hover:border-gray-500');
                 button.classList.add('border-green-500', 'bg-green-50', 'dark:bg-green-900/30');
-                button.innerHTML += ' <span class="float-right text-green-500">✓</span>';
+                
+                const indicator = document.createElement('span');
+                indicator.className = 'option-indicator text-green-500';
+                indicator.textContent = '✓';
+                button.appendChild(indicator);
+                
                 score++;
                 
                 // Play correct answer sound
                 const correctSound = new Audio('benar.aac');
                 correctSound.play().catch(e => console.log('Audio play failed:', e));
             } else {
-                button.classList.remove('border-gray-200', 'dark:border-gray-600', 'hover:border-orange-300', 'dark:hover:border-orange-500', 'hover:bg-orange-50', 'dark:hover:bg-orange-900/30');
+                button.classList.remove('border-gray-300', 'dark:border-gray-600', 'hover:border-gray-400', 'dark:hover:border-gray-500');
                 button.classList.add('border-red-500', 'bg-red-50', 'dark:bg-red-900/30', 'shake');
-                button.innerHTML += ' <span class="float-right text-red-500">✕</span>';
+                
+                const indicator = document.createElement('span');
+                indicator.className = 'option-indicator text-red-500';
+                indicator.textContent = '✕';
+                button.appendChild(indicator);
                 
                 // Play wrong answer sound
                 const wrongSound = new Audio('salah.aac');
@@ -339,10 +436,14 @@
 
                 // Highlight correct answer
                 allButtons.forEach(btn => {
-                    if (btn.textContent.includes(correct)) {
-                        btn.classList.remove('border-gray-200', 'dark:border-gray-600');
+                    if (btn.textContent === correct) {
+                        btn.classList.remove('border-gray-300', 'dark:border-gray-600');
                         btn.classList.add('border-green-500', 'bg-green-50', 'dark:bg-green-900/30');
-                        btn.innerHTML += ' <span class="float-right text-green-500">✓</span>';
+                        
+                        const correctIndicator = document.createElement('span');
+                        correctIndicator.className = 'option-indicator text-green-500';
+                        correctIndicator.textContent = '✓';
+                        btn.appendChild(correctIndicator);
                     }
                 });
             }
@@ -401,7 +502,23 @@
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('level-selection').classList.remove('hidden');
         }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
     </script>
     <script src="darkmode.js"></script>
+    <script>
+        // Clean URL - Remove .html from URL
+        (function() {
+            let path = window.location.pathname;
+            if (path.endsWith('.html')) {
+                let newPath = path.replace('.html', '');
+                window.history.replaceState(null, '', newPath);
+            }
+        })();
+    </script>
 </body>
 </html>

@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belajar Jepang - Gratis, Langsung Mulai!</title>
+    <title>Latihan Bahasa Jepang - Gratis, Langsung Mulai!</title>
+    <!-- Dark Mode Script (must be before body renders to prevent flash) -->
+    <script>
+        (function() {
+            if (localStorage.getItem('darkMode') === 'enabled' || 
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,20 +22,70 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.60);
+            z-index: 0;
+        }
+        
+        .dark .hero-bg::before {
+            background: rgba(17, 24, 39, 0.60);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pattern-bg {
+            background-color: #f9fafb;
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(239, 68, 68, 0.05) 2%, transparent 0%),
+                radial-gradient(circle at 75px 75px, rgba(239, 68, 68, 0.05) 2%, transparent 0%);
+            background-size: 100px 100px;
+        }
+        
+        .dark .pattern-bg {
+            background-color: #111827;
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(239, 68, 68, 0.1) 2%, transparent 0%),
+                radial-gradient(circle at 75px 75px, rgba(239, 68, 68, 0.1) 2%, transparent 0%);
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
     <!-- Navbar -->
-    <nav class="bg-white dark:bg-gray-800 shadow-sm transition-colors duration-300">
+    <nav class="bg-white dark:bg-gray-800 shadow-sm transition-colors duration-300 fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
+                    <!-- Hamburger Button (Mobile Only) -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <span class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</span>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">BelajarJejepangan</span>
                 </div>
-                <div class="flex items-center space-x-8">
+                <div class="flex items-center space-x-4 md:space-x-8">
                     <div class="hidden md:flex space-x-8">
                         <a href="index.html" class="text-gray-900 dark:text-white font-medium">Beranda</a>
                         <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Hiragana</a>
@@ -46,31 +105,100 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu Sidebar -->
+    <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
+        <!-- Backdrop -->
+        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+        
+        <!-- Sidebar -->
+        <div class="absolute top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full">
+                <!-- Header -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">B</span>
+                        </div>
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">BelajarJejepangan</span>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Menu Items -->
+                <nav class="flex-1 overflow-y-auto p-4">
+                    <a href="index.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-900 dark:text-white bg-red-50 dark:bg-red-900/20 font-medium mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="hiragana.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Hiragana</span>
+                    </a>
+                    <a href="katakana.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Katakana</span>
+                    </a>
+                    <a href="kanji.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <span>Kanji</span>
+                    </a>
+                    <a href="kosakata.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Kosakata</span>
+                    </a>
+                    <a href="referensi.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                        </svg>
+                        <span>Referensi</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add padding to body content to account for fixed navbar -->
+    <div class="pt-16"></div>
+
     <!-- Hero Section -->
-    <section class="py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-block mb-4">
-                <span class="bg-red-50 dark:bg-red-900 text-red-500 dark:text-red-300 px-4 py-2 rounded-full text-sm font-semibold">
-                    ❤️ VERSI BARU
+    <section class="hero-bg py-12 sm:py-16 md:py-20 px-4">
+        <div class="hero-content max-w-4xl mx-auto text-center">
+            <div class="inline-block mb-3 sm:mb-4">
+                <span class="bg-red-50 dark:bg-red-900 text-red-500 dark:text-red-300 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
+                    ❤️ VERSI BETA
                 </span>
             </div>
-            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-2">
-                Belajar Jepang Gratis,
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-2">
+                Latihan Jejepangan Gratis,
             </h1>
-            <h2 class="text-5xl md:text-6xl font-extrabold text-red-500 dark:text-red-400 mb-6">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-red-500 dark:text-red-400 mb-4 sm:mb-6">
                 Langsung Mulai!
             </h2>
-            <p class="text-xl text-gray-600 dark:text-gray-300 mb-2">
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-1 sm:mb-2 px-4">
                 Kuasai Hiragana dan Kanji dengan metode simpel.
             </p>
-            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 px-4">
                 Tanpa akun, tanpa bayar, tanpa ribet.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="pilih-jalur.html" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-200">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+                <a href="pilih-jalur.html" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg text-base sm:text-lg transition duration-200">
                     ▶ Mulai Sekarang
                 </a>
-                <a href="referensi.html" class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold py-4 px-8 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-lg transition duration-200">
+                <a href="referensi.html" class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-base sm:text-lg transition duration-200">
                     Lihat Materi
                 </a>
             </div>
@@ -78,16 +206,16 @@
     </section>
 
     <!-- Learning Paths -->
-    <section class="py-16 px-4 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <section class="py-12 sm:py-16 px-4 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-3 sm:mb-4">
                 Pilih Jalur Belajar Anda
             </h2>
-            <p class="text-center text-gray-600 dark:text-gray-300 mb-12">
+            <p class="text-center text-gray-600 dark:text-gray-300 mb-8 sm:mb-12 text-sm sm:text-base">
                 Mulai dari dasar atau lanjutkan yang sudah Anda tahu.
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <!-- Hiragana Dasar -->
                 <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-8 hover:shadow-lg transition duration-200">
                     <div class="w-12 h-12 bg-red-100 dark:bg-red-800 rounded-lg flex items-center justify-center mb-4">
@@ -156,7 +284,7 @@
     </section>
 
     <!-- No Login Section -->
-    <section class="py-16 px-4">
+    <section class="pattern-bg py-16 px-4">
         <div class="max-w-4xl mx-auto text-center">
             <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
                 <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -194,27 +322,34 @@
                     <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">B</span>
                     </div>
-                    <span class="text-xl font-bold text-gray-900 dark:text-white">Nasywa Goes To Japan</span>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">BelajarJejepangan</span>
                 </div>
-                <div class="flex space-x-6 mb-4 md:mb-0">
-                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Beranda</a>
-                    <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Hiragana</a>
-                    <a href="katakana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Katakana</a>
-                    <a href="kanji.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Kanji</a>
-                    <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Tentang Kami</a>
+                <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6 mb-4 md:mb-0 text-sm sm:text-base">
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Beranda</a>
+                    <a href="hiragana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Hiragana</a>
+                    <a href="katakana.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Katakana</a>
+                    <a href="kanji.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Kanji</a>
+                    <a href="referensi.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white whitespace-nowrap">Referensi</a>
                 </div>
             </div>
-            <div class="mt-8 text-center text-gray-500 dark:text-gray-400 text-sm">
-                © 2023 Belajar Jepang. Dibuat dengan semangat belajar.
-                <div class="mt-2">
-                    <a href="#" class="hover:text-gray-700 dark:hover:text-gray-200">Kebijakan Privasi</a> · 
-                    <a href="#" class="hover:text-gray-700 dark:hover:text-gray-200">Syarat & Ketentuan</a>
+            <div class="mt-6 sm:mt-8 text-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
+                © 2026 Belajar Jepang. Dibuat dengan semangat belajar.
+                <div class="mt-2 flex flex-wrap justify-center gap-x-2 gap-y-1">
+                    <a href="#" class="hover:text-gray-700 dark:hover:text-gray-200 whitespace-nowrap">Kebijakan Privasi</a>
+                    <span class="hidden sm:inline">·</span>
+                    <a href="#" class="hover:text-gray-700 dark:hover:text-gray-200 whitespace-nowrap">Syarat & Ketentuan</a>
                 </div>
             </div>
         </div>
     </footer>
     
     <script>
+        // Mobile Menu Toggle Function
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
         // Dark Mode Toggle Function
         function toggleDarkMode() {
             const html = document.documentElement;
@@ -227,6 +362,15 @@
             (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         }
+        
+        // Clean URL - Remove .html from URL
+        (function() {
+            let path = window.location.pathname;
+            if (path.endsWith('.html')) {
+                let newPath = path.replace('.html', '');
+                window.history.replaceState(null, '', newPath);
+            }
+        })();
     </script>
     
 
