@@ -1,0 +1,222 @@
+[
+  {
+    "kanji": "私",
+    "furigana": "わたし",
+    "arti": "Saya"
+  },
+  {
+    "kanji": "私たち",
+    "furigana": "わたしたち",
+    "arti": "Kita"
+  },
+  {
+    "kanji": "あなた",
+    "furigana": "あなた",
+    "arti": "Anda/Kamu"
+  },
+  {
+    "kanji": "あの人",
+    "furigana": "あのひと",
+    "arti": "Orang Itu"
+  },
+  {
+    "kanji": "あの方",
+    "furigana": "あのかた",
+    "arti": "Orang itu (sopan)"
+  },
+  {
+    "kanji": "皆さん",
+    "furigana": "みなさん",
+    "arti": "Anda semua (laki-laki dan perempuan"
+  },
+  {
+    "kanji": "～さん",
+    "furigana": "～さん",
+    "arti": "Titel sebuah nama"
+  },
+  {
+    "kanji": "～ちゃん",
+    "furigana": "～ちゃん",
+    "arti": "Akhiran yang ditambahkan kepada nama anak"
+  },
+  {
+    "kanji": "～君",
+    "furigana": "～くん",
+    "arti": "Akhiran sering ditambahkan ke nama anak laki- laki"
+  },
+  {
+    "kanji": "～人",
+    "furigana": "～じん",
+    "arti": "Akhiran yang berarti \"warga negara dari…”"
+  },
+  {
+    "kanji": "先生",
+    "furigana": "せんせい",
+    "arti": "Guru"
+  },
+  {
+    "kanji": "教師",
+    "furigana": "きょうし",
+    "arti": "Instruktur"
+  },
+  {
+    "kanji": "学生",
+    "furigana": "がくせい",
+    "arti": "Siswa"
+  },
+  {
+    "kanji": "会社員",
+    "furigana": "かいしゃいん",
+    "arti": "Karyawan Perusahaan"
+  },
+  {
+    "kanji": "社員",
+    "furigana": "しゃいん",
+    "arti": "Karyawan"
+  },
+  {
+    "kanji": "銀行員",
+    "furigana": "ぎんこういん",
+    "arti": "Karyawan Bank"
+  },
+  {
+    "kanji": "医者",
+    "furigana": "いしゃ",
+    "arti": "Dokter"
+  },
+  {
+    "kanji": "研究者",
+    "furigana": "けんきゅうしゃ",
+    "arti": "Peneliti"
+  },
+  {
+    "kanji": "エンジニア",
+    "furigana": "エンジニア",
+    "arti": "Insinyur"
+  },
+  {
+    "kanji": "大学",
+    "furigana": "だいがく",
+    "arti": "Universitas"
+  },
+  {
+    "kanji": "病院",
+    "furigana": "びょういん",
+    "arti": "Rumah Sakit"
+  },
+  {
+    "kanji": "電気",
+    "furigana": "でんき",
+    "arti": "Listrik"
+  },
+  {
+    "kanji": "だれ",
+    "furigana": "だれ",
+    "arti": "Siapa"
+  },
+  {
+    "kanji": "どなた",
+    "furigana": "どなた",
+    "arti": "Siapa (sopan)"
+  },
+  {
+    "kanji": "～歳",
+    "furigana": "～さい",
+    "arti": "Umur"
+  },
+  {
+    "kanji": "何歳",
+    "furigana": "なんさい",
+    "arti": "Umur berapa"
+  },
+  {
+    "kanji": "おいくつ",
+    "furigana": "おいくつ",
+    "arti": "Umur berapa (sopan)"
+  },
+  {
+    "kanji": "はい",
+    "furigana": "はい",
+    "arti": "Ya"
+  },
+  {
+    "kanji": "いいえ",
+    "furigana": "いいえ",
+    "arti": "Tidak"
+  },
+  {
+    "kanji": "失礼",
+    "furigana": "しつれいですが",
+    "arti": "Maaf/permisi"
+  },
+  {
+    "kanji": "初めまして",
+    "furigana": "はじめまして",
+    "arti": "Apakabar? (memperkenalkan diri pertama kali)/"
+  },
+  {
+    "kanji": "どうぞよろしく（お願いします",
+    "furigana": "どうぞよろしく\n（おねがいします）]",
+    "arti": "Senang berkenalan dengan anda"
+  },
+  {
+    "kanji": "こちらは～さんです",
+    "furigana": "こちらは～さんです",
+    "arti": "Ini adalah Tuan. (Nyonya.) ~/"
+  },
+  {
+    "kanji": "～から来ました",
+    "furigana": "～からきました",
+    "arti": "Saya datang  dari~"
+  },
+  {
+    "kanji": "アメキカ",
+    "furigana": "アメキカ",
+    "arti": "U.S.A."
+  },
+  {
+    "kanji": "イギリス",
+    "furigana": "イギリス",
+    "arti": "India"
+  },
+  {
+    "kanji": "インドネシア",
+    "furigana": "インドネシア",
+    "arti": "Indonesia"
+  },
+  {
+    "kanji": "韓国",
+    "furigana": "かんこく",
+    "arti": "Thailand"
+  },
+  {
+    "kanji": "タイ",
+    "furigana": "タイ",
+    "arti": "Thailand"
+  },
+  {
+    "kanji": "中国",
+    "furigana": "ちゅうごく",
+    "arti": "China"
+  },
+  {
+    "kanji": "ドイツ",
+    "furigana": "ドイツ",
+    "arti": "Germany"
+  },
+  {
+    "kanji": "日本",
+    "furigana": "にほん",
+    "arti": "Japan"
+  },
+  {
+    "kanji": "フランス",
+    "furigana": "フランス",
+    "arti": "France"
+  },
+  {
+    "kanji": "ブラジル",
+    "furigana": "ブラジル",
+    "arti": "Brazil"
+  }
+]
